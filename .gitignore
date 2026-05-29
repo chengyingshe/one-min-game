@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+
+# Node
+node_modules/
+.next/
+out/
+.npm
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.exe
+*.bin
+bin/
+
+# Generated games (keep .gitkeep)
+game-studio-pygame/generated-games/*
+!game-studio-pygame/generated-games/.gitkeep
+
+# Data
+*.db
+*.sqlite3
+data/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+game-studio/
+.claude
+.playwright-mcp
