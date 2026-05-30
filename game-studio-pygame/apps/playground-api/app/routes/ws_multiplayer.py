@@ -72,6 +72,7 @@ async def ws_multiplayer(websocket: WebSocket, room_id: str):
         "type": "lobby",
         "room_code": room_id,
         "host": room.host_id,
+        "max_players": room.max_players,
         "players": [
             {"id": pid, "name": p.display_name, "color": list(p.color)}
             for pid, p in room.players.items()

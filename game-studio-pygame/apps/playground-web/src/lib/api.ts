@@ -1,6 +1,6 @@
 import type { Game, RunResult, UploadPayload, Room } from "./types";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "/playground";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "";
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, init);
@@ -108,9 +108,11 @@ const WS_API_BASE = process.env.NEXT_PUBLIC_WS_API_URL || "";
 
 function getWsBase(): string {
   if (WS_API_BASE) return WS_API_BASE.replace(/^http/, "ws");
+  // Fallback: derive from current host, replacing port 3080→8080
   if (typeof window !== "undefined") {
     const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
-    return `${proto}//${window.location.host}/playground/ws`;
+    const host = window.location.hostname;
+    return `${proto}//${host}:8080`;
   }
   return "ws://localhost:8080";
 }
@@ -141,4 +143,25 @@ export async function getRoom(roomId: string): Promise<Room> {
 
 export function getWsMultiplayerUrl(roomId: string): string {
   return `${getWsBase()}/ws/multiplayer/${encodeURIComponent(roomId)}`;
+}
+
+// Mystery game API
+export async function createMysteryRoom(
+  mode: string,
+  hostName: string,
+  maxPlayers = 4
+): Promise<{ room_id: string; mode: string }> {
+  return request("/api/mystery/rooms", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      mode,
+      host_name: hostName,
+      max_players: maxPlayers,
+    }),
+  });
+}
+
+export function getWsMysteryUrl(roomId: string): string {
+  return `${getWsBase()}/ws/mystery/${encodeURIComponent(roomId)}`;
 }

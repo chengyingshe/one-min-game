@@ -59,6 +59,15 @@ async def api_get(path: str, params: dict | None = None) -> Any:
     return resp.json()
 
 
+async def api_post(path: str, json: Any = None) -> Any:
+    """POST JSON to Playground API."""
+    client = get_client()
+    resp = await client.post(path, json=json)
+    if resp.status_code >= 400:
+        raise PlaygroundError(resp.status_code, _parse_error_detail(resp))
+    return resp.json()
+
+
 async def api_post_multipart(
     path: str,
     files: dict,

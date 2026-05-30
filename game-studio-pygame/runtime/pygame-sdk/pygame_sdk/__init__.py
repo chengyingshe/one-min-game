@@ -119,6 +119,9 @@ from .ai import AIAgent, BehaviorType
 # Multiplayer
 from .multiplayer import MultiplayerManager, PlayerSlot
 
+# LLM
+from .llm import ask_llm, ask_llm_messages
+
 # Styles / Colors
 from . import styles
 
@@ -221,6 +224,9 @@ __all__ = [
     "MultiplayerManager",
     "MultiplayerConfig",
     "PlayerSlot",
+    # LLM
+    "ask_llm",
+    "ask_llm_messages",
     # Styles module
     "styles",
 ]

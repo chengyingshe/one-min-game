@@ -1,12 +1,12 @@
 """PyGame Game Studio MCP Server.
 
-Provides 21 tools for AI-powered game development:
+Provides 22 tools for AI-powered game development:
 check_environment, create_project, list_templates, scaffold_template,
 apply_game_spec, create_game, write_game_file, read_game_file,
 build_game, run_game, validate_gameplay, capture_frame,
 capture_screenshot, tune_balance, list_sdk_api, generate_readme,
 upload_to_playground, list_playground_games, get_playground_game,
-download_from_playground, delete_playground_game.
+download_from_playground, delete_playground_game, add_llm_to_game.
 """
 
 from __future__ import annotations
@@ -41,6 +41,7 @@ from pygame_studio_mcp.tools.list_playground_games import list_playground_games
 from pygame_studio_mcp.tools.get_playground_game import get_playground_game
 from pygame_studio_mcp.tools.download_from_playground import download_from_playground
 from pygame_studio_mcp.tools.delete_playground_game import delete_playground_game
+from pygame_studio_mcp.tools.add_llm_to_game import add_llm_to_game
 
 app = Server("pygame-game-studio")
 
@@ -313,6 +314,19 @@ async def list_tools() -> list[Tool]:
                 },
             },
         ),
+        Tool(
+            name="add_llm_to_game",
+            description="Test the LLM API endpoint and return integration instructions for adding AI features (NPC dialogue, procedural content, dynamic storytelling) to a game project. Call this when the game needs AI capabilities.",
+            inputSchema={
+                "type": "object",
+                "required": ["project"],
+                "properties": {
+                    "project": {"type": "string", "description": "Game project name"},
+                    "test_prompt": {"type": "string", "description": "Test prompt to verify LLM API (default: 'Say hello in one sentence.')"},
+                    "system_prompt": {"type": "string", "description": "Optional system prompt to test with"},
+                },
+            },
+        ),
     ]
 
 
@@ -399,6 +413,12 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
             )
         elif name == "delete_playground_game":
             result = await delete_playground_game(name=arguments["name"])
+        elif name == "add_llm_to_game":
+            result = await add_llm_to_game(
+                project=arguments["project"],
+                test_prompt=arguments.get("test_prompt"),
+                system_prompt=arguments.get("system_prompt"),
+            )
         else:
             return _json_result({"error": f"Unknown tool: {name}"})
 

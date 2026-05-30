@@ -31,6 +31,7 @@ export default function MultiplayerLobby({
   const [joined, setJoined] = useState(false);
   const [error, setError] = useState("");
   const [host, setHost] = useState("");
+  const [maxPlayers, setMaxPlayers] = useState(4);
 
   const connect = useCallback(() => {
     if (!name.trim()) {
@@ -53,6 +54,7 @@ export default function MultiplayerLobby({
           case "lobby":
             setPlayers(msg.players || []);
             setHost(msg.host || "");
+            if (msg.max_players) setMaxPlayers(msg.max_players);
             break;
           case "joined":
             setPlayerId(msg.player_id);
@@ -142,7 +144,7 @@ export default function MultiplayerLobby({
           </div>
         ))}
         <p className="text-gray-500 text-xs text-center mt-2">
-          {players.length} / 4 players
+          {players.length} / {maxPlayers} players
         </p>
       </div>
 
