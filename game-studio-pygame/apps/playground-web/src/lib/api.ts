@@ -102,16 +102,19 @@ export function screenshotUrl(path: string): string {
   return `${API_BASE}${path.startsWith("/") ? path : "/" + path}`;
 }
 
-const WS_BASE = (process.env.NEXT_PUBLIC_API_URL || "").replace(/^http/, "ws");
+// WebSocket must connect directly to the API server (port 8080),
+// not through Next.js rewrites which don't support WS proxying.
+const WS_API_BASE = process.env.NEXT_PUBLIC_WS_API_URL || "";
 
-// If no explicit API URL, derive WS from current browser location
 function getWsBase(): string {
-  if (WS_BASE) return WS_BASE;
+  if (WS_API_BASE) return WS_API_BASE.replace(/^http/, "ws");
+  // Fallback: derive from current host, replacing port 3080→8080
   if (typeof window !== "undefined") {
     const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
-    return `${proto}//${window.location.host}`;
+    const host = window.location.hostname;
+    return `${proto}//${host}:8080`;
   }
-  return "ws://localhost:3080";
+  return "ws://localhost:8080";
 }
 
 export function getWsPlayUrl(gameName: string): string {
