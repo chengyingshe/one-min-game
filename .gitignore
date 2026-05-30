@@ -46,5 +46,6 @@ data/
 .env
 .env.local
 game-studio/
+agent-town/
 .claude
 .playwright-mcp
