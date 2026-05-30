@@ -6,11 +6,11 @@ services:
       context: ../apps/playground-web
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: http://localhost:8080
+        NEXT_PUBLIC_API_URL: http://124.222.161.23:8080
     ports:
       - "3080:3000"
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:8080
+      - NEXT_PUBLIC_API_URL=http://124.222.161.23:8080
     depends_on:
       - api
 
