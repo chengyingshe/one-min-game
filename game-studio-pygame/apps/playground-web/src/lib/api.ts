@@ -1,6 +1,6 @@
-import type { Game, RunResult, UploadPayload } from "./types";
+import type { Game, RunResult, UploadPayload, Room } from "./types";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "";
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, init);
@@ -102,10 +102,42 @@ export function screenshotUrl(path: string): string {
   return `${API_BASE}${path.startsWith("/") ? path : "/" + path}`;
 }
 
-const WS_BASE = (
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
-).replace(/^http/, "ws");
+const WS_BASE = (process.env.NEXT_PUBLIC_API_URL || "").replace(/^http/, "ws");
+
+// If no explicit API URL, derive WS from current browser location
+function getWsBase(): string {
+  if (WS_BASE) return WS_BASE;
+  if (typeof window !== "undefined") {
+    const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
+    return `${proto}//${window.location.host}`;
+  }
+  return "ws://localhost:3080";
+}
 
 export function getWsPlayUrl(gameName: string): string {
-  return `${WS_BASE}/ws/play/${encodeURIComponent(gameName)}`;
+  return `${getWsBase()}/ws/play/${encodeURIComponent(gameName)}`;
+}
+
+export async function createRoom(
+  gameName: string,
+  hostName: string,
+  maxPlayers = 4,
+): Promise<Room> {
+  return request("/api/rooms", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      game_name: gameName,
+      host_name: hostName,
+      max_players: maxPlayers,
+    }),
+  });
+}
+
+export async function getRoom(roomId: string): Promise<Room> {
+  return request(`/api/rooms/${encodeURIComponent(roomId)}`);
+}
+
+export function getWsMultiplayerUrl(roomId: string): string {
+  return `${getWsBase()}/ws/multiplayer/${encodeURIComponent(roomId)}`;
 }
