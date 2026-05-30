@@ -1,5 +1,17 @@
 import type { Game } from "@/lib/types";
-import { screenshotUrl } from "@/lib/api";
+
+const GENRE_ICONS: Record<string, { emoji: string; bg: string }> = {
+  shooter: { emoji: "🔫", bg: "bg-red-950" },
+  platformer: { emoji: "🏃", bg: "bg-green-950" },
+  flappy: { emoji: "🐦", bg: "bg-sky-950" },
+  topdown: { emoji: "⚔️", bg: "bg-amber-950" },
+  rogue: { emoji: "🗡️", bg: "bg-purple-950" },
+  arcade: { emoji: "🕹️", bg: "bg-blue-950" },
+  puzzle: { emoji: "🧩", bg: "bg-pink-950" },
+  fps: { emoji: "🎯", bg: "bg-orange-950" },
+};
+
+const DEFAULT_ICON = { emoji: "🎮", bg: "bg-gray-900" };
 
 function StarRating({ rating, count }: { rating: number; count: number }) {
   const full = Math.round(rating);
@@ -15,21 +27,17 @@ function StarRating({ rating, count }: { rating: number; count: number }) {
 }
 
 export default function GameCard({ game }: { game: Game }) {
+  const icon = GENRE_ICONS[game.genre] ?? DEFAULT_ICON;
+
   return (
     <a
       href={`/play/${game.name}`}
       className="group block rounded-lg border border-gray-700 bg-gray-800 overflow-hidden transition-colors hover:border-indigo-500 hover:bg-gray-750"
     >
-      <div className="aspect-[4/3] bg-gray-900 flex items-center justify-center overflow-hidden">
-        {game.preview_image_url ? (
-          <img
-            src={screenshotUrl(game.preview_image_url)}
-            alt={game.display_name}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <span className="text-4xl text-gray-600">🎮</span>
-        )}
+      <div
+        className={`aspect-[4/3] ${icon.bg} flex items-center justify-center overflow-hidden`}
+      >
+        <span className="text-6xl">{icon.emoji}</span>
       </div>
       <div className="p-3 space-y-1">
         <h3 className="font-semibold text-white truncate group-hover:text-indigo-400">
