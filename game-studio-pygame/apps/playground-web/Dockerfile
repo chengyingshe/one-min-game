@@ -1,11 +1,11 @@
-FROM node:22-slim AS builder
+FROM node:26.1-alpine AS builder
 WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm install
 COPY . .
 RUN npm run build
 
-FROM node:22-slim
+FROM node:26.1-alpine
 WORKDIR /app
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules

@@ -1,0 +1,55 @@
+name: zombie-fps
+genre: fps
+screen:
+  width: 800
+  height: 600
+  fps: 60
+player:
+  hp: 5
+  speed: 0.06
+  turn_speed: 0.04
+  weapon_damage: 1
+  fire_rate: 15
+  symbol: "@"
+  color: [255, 255, 0]
+dungeon:
+  width: 32
+  height: 32
+  min_room_size: 4
+  max_room_size: 8
+  max_rooms: 8
+  wall_color: [80, 80, 100]
+  floor_color: [50, 45, 40]
+  corridor_color: [45, 40, 35]
+enemies:
+  count: 5
+  hp: 2
+  speed: 0.025
+  damage: 1
+  attack_range: 0.8
+  chase_range: 12.0
+  color: [200, 40, 40]
+  spawn_interval: 180
+  max_alive: 12
+difficulty:
+  easy:
+    player_hp: 7
+    enemy_speed: 0.018
+    enemy_count: 3
+    spawn_interval: 240
+    enemy_hp: 1
+    max_alive: 8
+  normal:
+    player_hp: 5
+    enemy_speed: 0.025
+    enemy_count: 5
+    spawn_interval: 180
+    enemy_hp: 2
+    max_alive: 12
+  hard:
+    player_hp: 3
+    enemy_speed: 0.035
+    enemy_count: 8
+    spawn_interval: 120
+    enemy_hp: 3
+    max_alive: 16

@@ -23,6 +23,7 @@ services:
       - GAMES_DIR=/data/games
       - SCREENSHOTS_DIR=/data/screenshots
       - RUNNER_IMAGE=pygame-runner:latest
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
     volumes:
       - game-data:/data
       - /var/run/docker.sock:/var/run/docker.sock

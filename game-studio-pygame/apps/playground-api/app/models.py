@@ -60,3 +60,23 @@ class GameResponse(BaseModel):
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
+
+# --- LLM models ---
+
+
+class LLMMessage(BaseModel):
+    role: str = Field(..., pattern=r"^(system|user|assistant)$")
+    content: str = Field(..., min_length=1, max_length=10000)
+
+
+class LLMRequest(BaseModel):
+    messages: list[LLMMessage] = Field(..., min_length=1, max_length=20)
+    temperature: float = Field(0.7, ge=0.0, le=2.0)
+    max_tokens: int = Field(2048, ge=1, le=8192)
+
+
+class LLMResponse(BaseModel):
+    content: str
+    model: str
+    usage: dict = Field(default_factory=dict)

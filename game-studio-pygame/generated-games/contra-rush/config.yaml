@@ -1,0 +1,71 @@
+name: Contra Rush
+genre: shooter
+screen:
+  width: 800
+  height: 608
+  fps: 60
+player:
+  symbol: ">"
+  hp: 3
+  color: [0, 200, 50]
+  size: [24, 32]
+  speed: 4
+  bullet_speed: 7
+  bullet_size: [8, 4]
+  bullet_color: [255, 255, 0]
+  shoot_cooldown: 15
+  jump_impulse: -12
+  gravity: 0.6
+enemy:
+  soldier_color: [200, 50, 50]
+  soldier_size: [24, 32]
+  turret_color: [150, 30, 30]
+  turret_size: [24, 24]
+  drone_color: [150, 150, 150]
+  drone_size: [20, 20]
+  bullet_color: [255, 150, 0]
+  bullet_size: [8, 4]
+  soldier_hp: 1
+  turret_hp: 2
+  drone_hp: 1
+pickup:
+  health_color: [255, 100, 150]
+  health_size: [16, 16]
+  health_restore: 1
+level:
+  tile_size: 32
+  width: 200
+  height: 19
+  ground_color: [100, 70, 40]
+  platform_color: [120, 100, 80]
+  bg_color: [20, 20, 50]
+  finish_col: 195
+  sky_color: [40, 40, 80]
+scoring:
+  soldier: 10
+  turret: 25
+  drone: 15
+  finish: 100
+  health_bonus: 20
+difficulty:
+  easy:
+    player_hp: 5
+    player_speed: 5
+    player_bullet_speed: 8
+    enemy_speed: 1.5
+    enemy_shoot_rate: 120
+    grace_period: 180
+  normal:
+    player_hp: 3
+    player_speed: 4
+    player_bullet_speed: 7
+    enemy_speed: 2.5
+    enemy_shoot_rate: 80
+    grace_period: 120
+  hard:
+    player_hp: 2
+    player_speed: 4
+    player_bullet_speed: 6
+    enemy_speed: 3.5
+    enemy_shoot_rate: 50
+    grace_period: 60
