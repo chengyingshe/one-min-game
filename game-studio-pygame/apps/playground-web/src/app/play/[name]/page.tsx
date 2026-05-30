@@ -11,6 +11,7 @@ import {
   incrementPlay,
   screenshotUrl,
   getWsPlayUrl,
+  createRoom,
 } from "@/lib/api";
 import type { Game, RunResult } from "@/lib/types";
 
@@ -47,6 +48,7 @@ export default function GameDetailPage() {
   const [running, setRunning] = useState(false);
   const [userRating, setUserRating] = useState(0);
   const [ratingSaved, setRatingSaved] = useState(false);
+  const [creatingRoom, setCreatingRoom] = useState(false);
 
   useEffect(() => {
     getGame(name)
@@ -87,6 +89,17 @@ export default function GameDetailPage() {
     [name],
   );
 
+  const handleMultiplayer = useCallback(async () => {
+    setCreatingRoom(true);
+    try {
+      const room = await createRoom(name, "Player 1");
+      window.location.href = `/play-multiplayer/${room.room_id}`;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to create room");
+      setCreatingRoom(false);
+    }
+  }, [name]);
+
   if (loading) {
     return <p className="text-gray-400">Loading...</p>;
   }
@@ -109,6 +122,15 @@ export default function GameDetailPage() {
         <div className="lg:col-span-2 space-y-4">
           {/* Interactive Game Player */}
           <GamePlayer gameName={name} wsUrl={wsUrl} controls={game.controls} />
+
+          {/* Multiplayer button */}
+          <button
+            onClick={handleMultiplayer}
+            disabled={creatingRoom}
+            className="px-4 py-1.5 rounded bg-purple-600 text-white text-sm font-bold hover:bg-purple-500 disabled:opacity-50 transition-colors"
+          >
+            {creatingRoom ? "Creating room..." : "Play Multiplayer"}
+          </button>
 
           {/* Preview generation (secondary) */}
           <details className="text-sm">

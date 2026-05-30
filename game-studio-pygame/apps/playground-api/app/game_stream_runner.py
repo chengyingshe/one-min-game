@@ -135,6 +135,10 @@ def main():
     from collections import defaultdict
     key_state: defaultdict[int, int] = defaultdict(int)
 
+    # Multiplayer support
+    multiplayer_mode = [False]
+    player_key_states: dict[str, dict[int, int]] = {}
+
     def stdin_reader():
         """Read keyboard events from stdin in a background thread."""
         for line in sys.stdin:
@@ -147,22 +151,47 @@ def main():
                 continue
 
             msg_type = msg.get("type")
+
+            # Multiplayer: start_game message
+            if msg_type == "start_game" and not multiplayer_mode[0]:
+                multiplayer_mode[0] = True
+                continue
+
+            # Multiplayer: player_left
+            if msg_type == "player_left":
+                pid = msg.get("player_id", "")
+                if pid in player_key_states:
+                    del player_key_states[pid]
+                continue
+
+            # Check for player-tagged input
+            player_tag = msg.get("player")
             key_name = msg.get("key", "")
 
             pygame_key = KEY_MAP.get(key_name)
             if pygame_key is not None:
-                if msg_type == "keydown":
-                    key_state[pygame_key] = 1
-                    with input_lock:
-                        input_events.append(
-                            pygame.event.Event(pygame.KEYDOWN, key=pygame_key, mod=0)
-                        )
-                elif msg_type == "keyup":
-                    key_state[pygame_key] = 0
-                    with input_lock:
-                        input_events.append(
-                            pygame.event.Event(pygame.KEYUP, key=pygame_key, mod=0)
-                        )
+                if multiplayer_mode[0] and player_tag:
+                    # Multiplayer: per-player key state
+                    if player_tag not in player_key_states:
+                        player_key_states[player_tag] = defaultdict(int)
+                    if msg_type == "keydown":
+                        player_key_states[player_tag][pygame_key] = 1
+                    elif msg_type == "keyup":
+                        player_key_states[player_tag][pygame_key] = 0
+                else:
+                    # Single-player (legacy)
+                    if msg_type == "keydown":
+                        key_state[pygame_key] = 1
+                        with input_lock:
+                            input_events.append(
+                                pygame.event.Event(pygame.KEYDOWN, key=pygame_key, mod=0)
+                            )
+                    elif msg_type == "keyup":
+                        key_state[pygame_key] = 0
+                        with input_lock:
+                            input_events.append(
+                                pygame.event.Event(pygame.KEYUP, key=pygame_key, mod=0)
+                            )
 
     reader_thread = threading.Thread(target=stdin_reader, daemon=True)
     reader_thread.start()
@@ -248,6 +277,12 @@ def main():
     try:
         spec, module = load_game_module(game_dir)
         module.__name__ = "__main__"
+
+        # Inject multiplayer state into game module namespace
+        if multiplayer_mode[0]:
+            module.multiplayer_mode = True
+            module.player_key_states = player_key_states
+
         spec.loader.exec_module(module)
     except SystemExit:
         pass

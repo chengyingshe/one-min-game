@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.config import settings, ensure_dirs
 from app.database import init_db
-from app.routes import games, upload, runner, ws_play
+from app.routes import games, upload, runner, ws_play, ws_multiplayer, rooms
 
 
 @asynccontextmanager
@@ -31,6 +31,8 @@ app.include_router(games.router)
 app.include_router(upload.router)
 app.include_router(runner.router)
 app.include_router(ws_play.router)
+app.include_router(ws_multiplayer.router)
+app.include_router(rooms.router)
 
 screenshots_dir = Path(settings.SCREENSHOTS_DIR)
 screenshots_dir.mkdir(parents=True, exist_ok=True)

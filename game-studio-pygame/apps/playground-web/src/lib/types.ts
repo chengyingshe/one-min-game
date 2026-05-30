@@ -44,6 +44,22 @@ export const GENRES = [
   "roguelike",
   "strategy",
   "racing",
+  "survival",
   "other",
 ] as const;
 export type Genre = (typeof GENRES)[number];
+
+export interface RoomPlayer {
+  id: string;
+  name: string;
+  color: number[];
+}
+
+export interface Room {
+  room_id: string;
+  game_name: string;
+  host_id: string;
+  status: "waiting" | "starting" | "running" | "finished";
+  max_players: number;
+  players: RoomPlayer[];
+}

@@ -33,9 +33,6 @@ Thumbs.db
 *.bin
 bin/
 
-# Generated games (keep .gitkeep)
-game-studio-pygame/generated-games/*
-!game-studio-pygame/generated-games/.gitkeep
 
 # Data
 *.db

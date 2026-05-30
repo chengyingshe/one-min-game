@@ -41,6 +41,20 @@ class GameplayConfig:
 
 
 @dataclass
+class MultiplayerConfig:
+    enabled: bool = False
+    max_players: int = 4
+    min_players: int = 2
+    shared_viewport: bool = True
+    player_colors: list[tuple[int, int, int]] = field(default_factory=lambda: [
+        (255, 220, 50),
+        (80, 160, 255),
+        (80, 220, 80),
+        (220, 80, 80),
+    ])
+
+
+@dataclass
 class GameConfig:
     """Top-level game configuration loaded from config.yaml."""
 
@@ -51,6 +65,7 @@ class GameConfig:
     controls: ControlsConfig = field(default_factory=ControlsConfig)
     gameplay: GameplayConfig = field(default_factory=GameplayConfig)
     difficulty: dict[str, DifficultyParams] = field(default_factory=dict)
+    multiplayer: MultiplayerConfig = field(default_factory=MultiplayerConfig)
 
 
 def default_game_config() -> GameConfig:
@@ -152,6 +167,25 @@ def _parse_config(raw: dict[str, Any]) -> GameConfig:
     if not difficulty:
         difficulty = defaults.difficulty
 
+    mp_raw = raw.get("multiplayer", {})
+    if isinstance(mp_raw, dict) and mp_raw:
+        colors_raw = mp_raw.get("player_colors", [])
+        player_colors = []
+        for c in colors_raw:
+            if isinstance(c, (list, tuple)) and len(c) >= 3:
+                player_colors.append(tuple(c[:3]))
+        if not player_colors:
+            player_colors = defaults.multiplayer.player_colors
+        multiplayer = MultiplayerConfig(
+            enabled=mp_raw.get("enabled", False),
+            max_players=int(mp_raw.get("max_players", 4)),
+            min_players=int(mp_raw.get("min_players", 2)),
+            shared_viewport=mp_raw.get("shared_viewport", True),
+            player_colors=player_colors,
+        )
+    else:
+        multiplayer = defaults.multiplayer
+
     return GameConfig(
         name=raw.get("name", defaults.name),
         genre=raw.get("genre", defaults.genre),
@@ -160,4 +194,5 @@ def _parse_config(raw: dict[str, Any]) -> GameConfig:
         controls=controls,
         gameplay=gameplay,
         difficulty=difficulty,
+        multiplayer=multiplayer,
     )

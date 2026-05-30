@@ -18,6 +18,8 @@ class EntityType(IntEnum):
     BULLET = 2
     OBSTACLE = 3
     COLLECTIBLE = 4
+    RESOURCE = 5
+    STRUCTURE = 6
 
 
 # Type alias for color tuples used by PyGame
@@ -49,6 +51,7 @@ class Entity:
         "collision_mask",
         "color",
         "pattern",
+        "owner",
     )
 
     def __init__(
@@ -68,6 +71,7 @@ class Entity:
         collision_mask: int = 0xFFFF,
         color: Color = (255, 255, 255),
         pattern: MovementPattern | None = None,
+        owner: str = "",
     ) -> None:
         self.id: int = 0
         self.type: EntityType = type
@@ -84,6 +88,7 @@ class Entity:
         self.collision_mask: int = collision_mask
         self.color: Color = color
         self.pattern: MovementPattern | None = pattern
+        self.owner: str = owner
 
     def bounds(self) -> Rect:
         """Return axis-aligned bounding box."""

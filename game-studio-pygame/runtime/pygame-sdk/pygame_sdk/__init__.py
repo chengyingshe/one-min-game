@@ -58,6 +58,7 @@ from .config import (
     ControlsConfig,
     GameConfig,
     GameplayConfig,
+    MultiplayerConfig,
     PlayerConfig,
     ScreenConfig,
     default_game_config,
@@ -115,6 +116,9 @@ from .raycast import RayHit, RaycastRenderer, draw_minimap
 # AI
 from .ai import AIAgent, BehaviorType
 
+# Multiplayer
+from .multiplayer import MultiplayerManager, PlayerSlot
+
 # Styles / Colors
 from . import styles
 
@@ -162,6 +166,7 @@ __all__ = [
     "ControlsConfig",
     "GameConfig",
     "GameplayConfig",
+    "MultiplayerConfig",
     "PlayerConfig",
     "ScreenConfig",
     "default_game_config",
@@ -212,6 +217,10 @@ __all__ = [
     # AI
     "AIAgent",
     "BehaviorType",
+    # Multiplayer
+    "MultiplayerManager",
+    "MultiplayerConfig",
+    "PlayerSlot",
     # Styles module
     "styles",
 ]
