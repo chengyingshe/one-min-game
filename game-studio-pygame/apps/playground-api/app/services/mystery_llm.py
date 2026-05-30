@@ -156,9 +156,18 @@ def role_play_speak(
 
     messages = [{"role": "system", "content": system_prompt}]
 
-    # Add recent chat history as context
-    for msg in recent_messages[-12:]:  # Last 12 messages for context
-        messages.append(msg)
+    # Convert chat history format (speaker/text/is_ai/timestamp) to OpenAI format (role/content)
+    for msg in recent_messages[-12:]:
+        speaker = msg.get("speaker", "")
+        text = msg.get("text", "")
+        if speaker == "host":
+            role = "assistant"
+            content = f"[法海主持人]: {text}"
+        else:
+            role = "user"
+            char_name = CHARACTERS.get(speaker, {}).get("name", speaker)
+            content = f"[{char_name}]: {text}"
+        messages.append({"role": role, "content": content})
 
     messages.append({
         "role": "user",

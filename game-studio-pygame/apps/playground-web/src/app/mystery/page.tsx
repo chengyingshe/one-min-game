@@ -31,7 +31,7 @@ function MysteryEntryContent() {
         hostName.trim() || "Host",
         mode === "solo" ? 1 : 4
       );
-      router.push(`/mystery/${room.room_id}`);
+      router.push(`/mystery/${room.room_id}?name=${encodeURIComponent(hostName.trim() || "Host")}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to create room");
       setCreating(false);

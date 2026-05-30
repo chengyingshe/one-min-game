@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import GameCard from "@/components/GameCard";
 import { listGames } from "@/lib/api";
 import type { Game, Genre } from "@/lib/types";
@@ -87,6 +88,19 @@ export default function GalleryPage() {
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <Link href="/mystery" className="group block rounded-lg border border-amber-700/50 bg-gradient-to-br from-gray-800 to-gray-900 p-5 hover:border-amber-500 hover:shadow-lg hover:shadow-amber-900/20 transition-all">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-2xl">🏮</span>
+            <h3 className="text-lg font-bold text-amber-200">相府鱼美人</h3>
+            <span className="ml-auto text-xs bg-amber-900/50 text-amber-300 px-2 py-0.5 rounded">剧本杀</span>
+          </div>
+          <p className="text-gray-400 text-sm mb-3">多人在线推理游戏 — LLM 主持人法海主持，AI 角色扮演，搜证推理指认鱼妖</p>
+          <div className="flex gap-2">
+            <span className="text-xs bg-gray-700 text-gray-300 px-2 py-0.5 rounded">单人+AI</span>
+            <span className="text-xs bg-gray-700 text-gray-300 px-2 py-0.5 rounded">多人在线</span>
+          </div>
+        </Link>
+
         {games.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}

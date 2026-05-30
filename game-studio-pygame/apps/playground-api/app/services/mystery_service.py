@@ -36,8 +36,8 @@ from app.services.mystery_scenario import (
 class MysteryPlayer:
     player_id: str
     display_name: str
-    websocket: WebSocket | None
-    char_id: str | None  # None until role assigned
+    websocket: WebSocket = None
+    char_id: str = None  # None until role assigned
     is_ai: bool = False
     joined_at: float = field(default_factory=time.time)
 

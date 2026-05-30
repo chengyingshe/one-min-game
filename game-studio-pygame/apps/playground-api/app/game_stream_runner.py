@@ -52,6 +52,16 @@ KEY_MAP = {
     "ctrl": pygame.K_LCTRL,
     "tab": pygame.K_TAB,
     "backspace": pygame.K_BACKSPACE,
+    "1": pygame.K_1,
+    "2": pygame.K_2,
+    "3": pygame.K_3,
+    "4": pygame.K_4,
+    "5": pygame.K_5,
+    "6": pygame.K_6,
+    "7": pygame.K_7,
+    "8": pygame.K_8,
+    "9": pygame.K_9,
+    "0": pygame.K_0,
 }
 
 # Target ~15 FPS for streaming (capture every N-th frame at 60 FPS game rate)

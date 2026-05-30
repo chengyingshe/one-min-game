@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter, useParams, useSearchParams } from "next/navigation";
 import { getWsMysteryUrl } from "@/lib/api";
 
 interface PlayerInfo {
@@ -35,12 +35,13 @@ interface ChatMessage {
 function MysteryGameContent() {
   const router = useRouter();
   const params = useParams();
+  const searchParams = useSearchParams();
   const roomId = params.roomId as string;
 
   const [ws, setWs] = useState<WebSocket | null>(null);
   const [playerId, setPlayerId] = useState("");
   const [playerName, setPlayerName] = useState("");
-  const [name, setName] = useState("");
+  const [name, setName] = useState(searchParams.get("name") || "");
   const [joined, setJoined] = useState(false);
   const [phase, setPhase] = useState("lobby");
   const [players, setPlayers] = useState<PlayerInfo[]>([]);
@@ -67,6 +68,16 @@ function MysteryGameContent() {
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  // Auto-connect if name is in URL
+  const hasAutoConnected = useRef(false);
+  useEffect(() => {
+    if (name.trim() && !hasAutoConnected.current && !joined && !ws) {
+      hasAutoConnected.current = true;
+      const timer = setTimeout(() => connect(), 200);
+      return () => clearTimeout(timer);
+    }
+  }); // eslint-disable-line react-hooks/exhaustive-deps
 
   const connect = useCallback(() => {
     if (!name.trim()) {

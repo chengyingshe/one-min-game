@@ -42,6 +42,8 @@ from app.config import settings
 from app.services.mystery_service import mystery_service, MysteryRoom
 from app.services.mystery_scenario import (
     CHARACTERS,
+    CHARACTER_IDS,
+    PRIVATE_SCRIPTS,
     PUBLIC_CLUES,
     DORM_CLUES,
     BODY_CLUES,
@@ -137,7 +139,7 @@ def _room_response(room: MysteryRoom) -> dict:
 # ============================================================
 
 
-async def _broadcast(room: MysteryRoom, message: dict, exclude: str | None = None):
+async def _broadcast(room: MysteryRoom, message: dict, exclude: str = None):
     text = json.dumps(message, ensure_ascii=False)
     for pid, p in room.players.items():
         if pid == exclude or p.is_ai or p.websocket is None:
@@ -205,7 +207,6 @@ async def _ai_players_speak(room: MysteryRoom):
 
 async def _ai_vote(room: MysteryRoom, vote_type: str) -> None:
     """AI players cast votes."""
-    from app.services.mystery_llm import role_play_speak
     ai_players = [p for p in room.players.values() if p.is_ai and p.char_id]
     if not ai_players:
         return
@@ -232,6 +233,25 @@ async def _start_game(room: MysteryRoom):
     """Start game: assign roles, enter intro phase."""
     mystery_service.auto_assign_roles(room.room_id)
     mystery_service.set_phase(room.room_id, PHASE_INTRO)
+
+    # Broadcast updated lobby so frontend shows AI players
+    await _broadcast(room, {
+        "type": "lobby",
+        "room_id": room.room_id,
+        "mode": room.mode,
+        "host": room.host_id,
+        "max_players": room.max_players,
+        "players": [
+            {
+                "id": pid,
+                "name": p.display_name,
+                "char_id": p.char_id,
+                "is_ai": p.is_ai,
+                "color": list(CHARACTERS[p.char_id]["color"]) if p.char_id else None,
+            }
+            for pid, p in room.players.items()
+        ],
+    })
 
     # Send scene
     await _broadcast(room, {"type": "scene", "name": "mansion"})

@@ -23,6 +23,9 @@ export default function RootLayout({
               <a href="/" className="text-sm text-gray-300 hover:text-white">
                 Gallery
               </a>
+              <a href="/mystery" className="text-sm text-amber-300 hover:text-amber-200 font-bold">
+                剧本杀
+              </a>
               <a
                 href="/upload"
                 className="text-sm text-gray-300 hover:text-white"
