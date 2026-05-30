@@ -144,24 +144,3 @@ export async function getRoom(roomId: string): Promise<Room> {
 export function getWsMultiplayerUrl(roomId: string): string {
   return `${getWsBase()}/ws/multiplayer/${encodeURIComponent(roomId)}`;
 }
-
-// Mystery game API
-export async function createMysteryRoom(
-  mode: string,
-  hostName: string,
-  maxPlayers = 4
-): Promise<{ room_id: string; mode: string }> {
-  return request("/api/mystery/rooms", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      mode,
-      host_name: hostName,
-      max_players: maxPlayers,
-    }),
-  });
-}
-
-export function getWsMysteryUrl(roomId: string): string {
-  return `${getWsBase()}/ws/mystery/${encodeURIComponent(roomId)}`;
-}

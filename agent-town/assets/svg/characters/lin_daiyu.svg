@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900">
+  <defs>
+    <linearGradient id="hanfuBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b8d4e8" />
+      <stop offset="30%" stop-color="#a0c8e0" />
+      <stop offset="70%" stop-color="#88b0c8" />
+      <stop offset="100%" stop-color="#7098b0" />
+    </linearGradient>
+    <linearGradient id="hanfuWhite" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8f4f0" />
+      <stop offset="100%" stop-color="#e8e0d8" />
+    </linearGradient>
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2a" />
+      <stop offset="100%" stop-color="#2a2a3a" />
+    </linearGradient>
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fce8d8" />
+      <stop offset="100%" stop-color="#f0d4c0" />
+    </linearGradient>
+    <linearGradient id="sashGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a0c8d8" />
+      <stop offset="50%" stop-color="#88b8c8" />
+      <stop offset="100%" stop-color="#a0c8d8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Head -->
+  <!-- Face -->
+  <ellipse cx="300" cy="210" rx="55" ry="65" fill="url(#skinGrad)" />
+
+  <!-- Hair - back layer -->
+  <ellipse cx="300" cy="190" rx="60" ry="55" fill="url(#hairGrad)" />
+  <path d="M245,200 Q240,300 250,420 Q260,520 270,620 Q280,680 290,720" fill="url(#hairGrad)" />
+  <path d="M355,200 Q360,300 350,420 Q340,520 330,620 Q320,680 310,720" fill="url(#hairGrad)" />
+  <!-- Hair back bulk -->
+  <ellipse cx="300" cy="300" rx="55" ry="120" fill="url(#hairGrad)" opacity="0.9" />
+
+  <!-- Hair - top volume -->
+  <ellipse cx="300" cy="170" rx="58" ry="35" fill="#151525" />
+  <!-- Hair bun -->
+  <ellipse cx="300" cy="130" rx="25" ry="22" fill="#151525" />
+  <!-- Hairpin -->
+  <line x1="280" y1="130" x2="330" y2="125" stroke="#c9a84c" stroke-width="2" />
+  <circle cx="330" cy="125" r="5" fill="#a0d8a0" opacity="0.8" />
+  <circle cx="335" cy="122" r="2" fill="#c0e8c0" opacity="0.5" />
+
+  <!-- Hair strands framing face -->
+  <path d="M250,180 Q248,200 252,230" fill="none" stroke="#1a1a2a" stroke-width="3" />
+  <path d="M350,180 Q352,200 348,230" fill="none" stroke="#1a1a2a" stroke-width="3" />
+
+  <!-- Eyebrows - thin, slightly sad -->
+  <path d="M270,195 Q280,190 290,193" fill="none" stroke="#2a2a3a" stroke-width="2" stroke-linecap="round" />
+  <path d="M330,193 Q320,190 310,195" fill="none" stroke="#2a2a3a" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Eyes - downcast, melancholic -->
+  <ellipse cx="285" cy="210" rx="10" ry="5" fill="white" />
+  <ellipse cx="315" cy="210" rx="10" ry="5" fill="white" />
+  <ellipse cx="285" cy="210" rx="5" ry="4" fill="#3a2a1a" />
+  <ellipse cx="315" cy="210" rx="5" ry="4" fill="#3a2a1a" />
+  <circle cx="287" cy="208" r="1.5" fill="white" opacity="0.7" />
+  <circle cx="317" cy="208" r="1.5" fill="white" opacity="0.7" />
+  <!-- Eyelids (half-closed, melancholic) -->
+  <path d="M275,208 Q285,205 295,208" fill="#f0d4c0" opacity="0.6" />
+  <path d="M305,208 Q315,205 325,208" fill="#f0d4c0" opacity="0.6" />
+
+  <!-- Nose -->
+  <path d="M300,213 Q298,225 295,230" fill="none" stroke="#e0b898" stroke-width="1.5" />
+
+  <!-- Mouth - small, slight frown -->
+  <path d="M290,245 Q300,242 310,245" fill="none" stroke="#d08080" stroke-width="1.5" stroke-linecap="round" />
+
+  <!-- Slight blush -->
+  <ellipse cx="270" cy="232" rx="12" ry="6" fill="#f0b0a0" opacity="0.2" />
+  <ellipse cx="330" cy="232" rx="12" ry="6" fill="#f0b0a0" opacity="0.2" />
+
+  <!-- Neck -->
+  <rect x="285" y="270" width="30" height="30" fill="url(#skinGrad)" />
+
+  <!-- Body / Hanfu (outer robe) -->
+  <!-- Shoulders and main robe shape -->
+  <path d="M200,300 Q180,350 170,450 Q160,550 165,650 Q170,750 200,820 L400,820 Q430,750 435,650 Q440,550 430,450 Q420,350 400,300 Z" fill="url(#hanfuBlue)" />
+
+  <!-- Inner white collar -->
+  <path d="M270,300 Q260,340 255,400 L300,430 L345,400 Q340,340 330,300 Z" fill="url(#hanfuWhite)" />
+  <!-- Collar edge detail -->
+  <path d="M275,305 Q265,340 260,400" fill="none" stroke="#c0d8e8" stroke-width="1" />
+  <path d="M325,305 Q335,340 340,400" fill="none" stroke="#c0d8e8" stroke-width="1" />
+
+  <!-- Cross-collar (交领) overlay -->
+  <path d="M275,305 L260,400 L300,420 L300,305 Z" fill="url(#hanfuWhite)" opacity="0.9" />
+  <path d="M325,305 L340,400 L300,420 L300,305 Z" fill="url(#hanfuWhite)" opacity="0.9" />
+
+  <!-- Sash / belt -->
+  <rect x="180" y="470" width="240" height="20" rx="3" fill="url(#sashGrad)" />
+  <!-- Sash tie -->
+  <path d="M300,470 L300,510 Q310,520 320,510 Q325,500 320,490" fill="none" stroke="#a0c8d8" stroke-width="4" stroke-linecap="round" />
+  <path d="M300,470 L280,500 Q275,510 270,505" fill="none" stroke="#a0c8d8" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Plum blossom embroidery on robe -->
+  <g opacity="0.3" fill="#d06080">
+    <circle cx="220" cy="550" r="3" />
+    <circle cx="220" cy="550" r="1.5" fill="#f0a0b0" />
+    <circle cx="380" cy="600" r="3" />
+    <circle cx="380" cy="600" r="1.5" fill="#f0a0b0" />
+    <circle cx="200" cy="680" r="3" />
+    <circle cx="200" cy="680" r="1.5" fill="#f0a0b0" />
+  </g>
+
+  <!-- Sleeves -->
+  <!-- Left sleeve (hanging) -->
+  <path d="M200,320 Q150,350 120,420 Q100,480 110,540 Q115,560 130,560 Q150,555 160,530 Q180,470 200,420 Z" fill="url(#hanfuWhite)" />
+  <!-- Left sleeve fabric drape -->
+  <path d="M120,420 Q110,500 115,540" fill="none" stroke="#d0d0c8" stroke-width="1" />
+  <path d="M160,530 Q150,500 140,460" fill="none" stroke="#d0d0c8" stroke-width="0.5" />
+
+  <!-- Right sleeve (hanging, slightly forward) -->
+  <path d="M380,330 Q420,360 450,430 Q470,490 465,550 Q460,570 445,570 Q425,565 420,540 Q400,480 390,430 Z" fill="url(#hanfuWhite)" />
+
+  <!-- Right arm holding scroll -->
+  <path d="M350,380 Q380,420 400,470 Q405,490 395,510" fill="none" stroke="url(#hanfuBlue)" stroke-width="20" stroke-linecap="round" />
+
+  <!-- Scroll in right hand -->
+  <g>
+    <!-- Scroll paper -->
+    <rect x="380" y="490" width="30" height="80" rx="2" fill="#f0e8d0" />
+    <!-- Top roller -->
+    <rect x="376" y="486" width="38" height="10" rx="3" fill="#8B6914" />
+    <!-- Bottom roller -->
+    <rect x="376" y="576" width="38" height="10" rx="3" fill="#8B6914" />
+    <!-- Scroll lines (text hint) -->
+    <line x1="387" y1="510" x2="403" y2="510" stroke="#c0b898" stroke-width="0.8" />
+    <line x1="387" y1="520" x2="403" y2="520" stroke="#c0b898" stroke-width="0.8" />
+    <line x1="387" y1="530" x2="400" y2="530" stroke="#c0b898" stroke-width="0.8" />
+    <line x1="387" y1="540" x2="403" y2="540" stroke="#c0b898" stroke-width="0.8" />
+    <line x1="387" y1="550" x2="398" y2="550" stroke="#c0b898" stroke-width="0.8" />
+    <line x1="387" y1="560" x2="403" y2="560" stroke="#c0b898" stroke-width="0.8" />
+    <!-- Hand over scroll -->
+    <ellipse cx="395" cy="500" rx="12" ry="8" fill="url(#skinGrad)" />
+  </g>
+
+  <!-- Skirt / lower robe -->
+  <path d="M200,490 Q180,600 175,720 Q170,800 190,860 L410,860 Q430,800 425,720 Q420,600 400,490 Z" fill="url(#hanfuBlue)" />
+  <!-- Skirt fold lines -->
+  <g stroke="#7098b0" stroke-width="0.8" opacity="0.3">
+    <path d="M250,500 Q240,650 235,780" fill="none" />
+    <path d="M300,490 Q300,650 300,830" fill="none" />
+    <path d="M350,500 Q360,650 365,780" fill="none" />
+  </g>
+
+  <!-- Shoes peeking out -->
+  <ellipse cx="280" cy="855" rx="20" ry="8" fill="#4a6a8a" />
+  <ellipse cx="320" cy="855" rx="20" ry="8" fill="#4a6a8a" />
+
+  <!-- Subtle shadow at feet -->
+  <ellipse cx="300" cy="865" rx="80" ry="12" fill="#000000" opacity="0.1" />
+</svg>

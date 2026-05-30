@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900">
+  <defs>
+    <linearGradient id="armorGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0d060" />
+      <stop offset="30%" stop-color="#d0a830" />
+      <stop offset="60%" stop-color="#e8c040" />
+      <stop offset="100%" stop-color="#b89020" />
+    </linearGradient>
+    <linearGradient id="armorDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e8c040" />
+      <stop offset="100%" stop-color="#a08020" />
+    </linearGradient>
+    <linearGradient id="capeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e04030" />
+      <stop offset="50%" stop-color="#c03020" />
+      <stop offset="100%" stop-color="#901010" />
+    </linearGradient>
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f0d8b8" />
+      <stop offset="100%" stop-color="#e0c8a0" />
+    </linearGradient>
+    <linearGradient id="staffGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d0a830" />
+      <stop offset="50%" stop-color="#f0d060" />
+      <stop offset="100%" stop-color="#d0a830" />
+    </linearGradient>
+    <linearGradient id="pantsGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c04030" />
+      <stop offset="100%" stop-color="#801818" />
+    </linearGradient>
+  </defs>
+
+  <!-- Cape behind (flowing) -->
+  <path d="M370,280 Q440,280 480,330 Q530,400 540,500 Q550,600 530,700 Q520,760 500,800 L350,800 Q330,760 320,700 Q300,600 310,500 Q320,400 370,280 Z" fill="url(#capeGrad)" />
+  <!-- Cape inner fold -->
+  <path d="M370,300 Q420,320 450,380 Q470,450 460,520" fill="none" stroke="#d05040" stroke-width="2" opacity="0.5" />
+  <path d="M350,380 Q380,420 390,500 Q395,580 380,660" fill="none" stroke="#d05040" stroke-width="1.5" opacity="0.3" />
+
+  <!-- Body / Torso armor -->
+  <!-- Chest plate -->
+  <path d="M260,300 Q250,340 245,400 Q240,480 250,540 Q255,560 260,560 L340,560 Q345,560 350,540 Q360,480 355,400 Q350,340 340,300 Z" fill="url(#armorGold)" />
+  <!-- Chest plate border -->
+  <path d="M260,300 Q250,340 245,400 Q240,480 250,540" fill="none" stroke="#a08020" stroke-width="2.5" />
+  <path d="M340,300 Q350,340 355,400 Q360,480 350,540" fill="none" stroke="#a08020" stroke-width="2.5" />
+
+  <!-- Cloud pattern on armor -->
+  <g stroke="#c9a84c" stroke-width="1.5" fill="none" opacity="0.5">
+    <path d="M270,370 Q280,360 290,370 Q300,380 310,370" />
+    <path d="M280,420 Q290,405 300,420 Q310,435 320,420" />
+    <path d="M275,460 Q285,445 295,460" />
+  </g>
+
+  <!-- Shoulder guards -->
+  <ellipse cx="245" cy="320" rx="30" ry="22" fill="url(#armorDark)" />
+  <ellipse cx="245" cy="320" rx="28" ry="20" fill="none" stroke="#d0a830" stroke-width="1.5" />
+  <ellipse cx="355" cy="320" rx="30" ry="22" fill="url(#armorDark)" />
+  <ellipse cx="355" cy="320" rx="28" ry="20" fill="none" stroke="#d0a830" stroke-width="1.5" />
+
+  <!-- Arm guards (left) -->
+  <rect x="205" y="340" width="30" height="60" rx="5" fill="url(#armorDark)" />
+  <rect x="205" y="340" width="30" height="60" rx="5" fill="none" stroke="#d0a830" stroke-width="1" />
+  <rect x="210" y="400" width="25" height="30" rx="5" fill="url(#armorDark)" />
+
+  <!-- Arm guards (right - staff hand) -->
+  <rect x="365" y="340" width="30" height="50" rx="5" fill="url(#armorDark)" />
+  <rect x="365" y="340" width="30" height="50" rx="5" fill="none" stroke="#d0a830" stroke-width="1" />
+
+  <!-- Belt -->
+  <rect x="240" y="550" width="120" height="16" rx="3" fill="#6a4020" />
+  <rect x="240" y="550" width="120" height="16" rx="3" fill="none" stroke="#8a6030" stroke-width="1" />
+  <!-- Belt buckle -->
+  <circle cx="300" cy="558" r="10" fill="url(#armorGold)" />
+  <circle cx="300" cy="558" r="6" fill="#a08020" />
+
+  <!-- Tiger skin skirt/kilt -->
+  <path d="M250,566 Q240,600 245,650 L355,650 Q360,600 350,566 Z" fill="#d0a060" />
+  <!-- Tiger stripes -->
+  <g stroke="#8a5020" stroke-width="2" opacity="0.4">
+    <path d="M260,590 Q270,585 280,590" />
+    <path d="M310,600 Q320,595 330,600" />
+    <path d="M270,620 Q280,615 290,620" />
+    <path d="M320,630 Q330,625 340,630" />
+  </g>
+
+  <!-- Pants -->
+  <path d="M250,650 L240,740 L280,740 L280,650 Z" fill="url(#pantsGrad)" />
+  <path d="M350,650 L360,740 L320,740 L320,650 Z" fill="url(#pantsGrad)" />
+
+  <!-- Boots -->
+  <path d="M240,740 L235,830 Q235,840 250,840 L280,840 L280,740 Z" fill="#2a1a0a" />
+  <path d="M360,740 L365,830 Q365,840 350,840 L320,840 L320,740 Z" fill="#2a1a0a" />
+  <!-- Boot trim -->
+  <rect x="238" y="820" width="44" height="4" rx="1" fill="#8a6030" />
+  <rect x="318" y="820" width="44" height="4" rx="1" fill="#8a6030" />
+
+  <!-- Left hand and forearms -->
+  <!-- Left forearm (fur) -->
+  <ellipse cx="220" cy="420" rx="18" ry="25" fill="#c8a060" />
+  <!-- Left hand/paw -->
+  <circle cx="215" cy="445" r="15" fill="url(#skinGrad)" />
+  <ellipse cx="210" cy="445" rx="10" ry="8" fill="#d0b090" />
+
+  <!-- Right arm (extended, holding staff) -->
+  <ellipse cx="380" cy="400" rx="18" ry="25" fill="#c8a060" />
+
+  <!-- Ruyi Jingu Bang (golden staff) -->
+  <rect x="430" y="220" width="12" height="500" rx="3" fill="url(#staffGrad)" />
+  <!-- Staff ends -->
+  <rect x="424" y="215" width="24" height="12" rx="4" fill="#d0a830" />
+  <rect x="424" y="715" width="24" height="12" rx="4" fill="#d0a830" />
+  <rect x="428" y="212" width="16" height="6" rx="2" fill="#f0d060" />
+  <rect x="428" y="722" width="16" height="6" rx="2" fill="#f0d060" />
+  <!-- Staff cloud pattern -->
+  <g stroke="#f0d060" stroke-width="1" fill="none" opacity="0.4">
+    <path d="M434,300 Q440,295 438,300" />
+    <path d="M434,350 Q440,345 438,350" />
+    <path d="M434,400 Q440,395 438,400" />
+    <path d="M434,450 Q440,445 438,450" />
+    <path d="M434,500 Q440,495 438,500" />
+  </g>
+
+  <!-- Right hand gripping staff -->
+  <circle cx="436" cy="410" r="16" fill="url(#skinGrad)" />
+  <path d="M430,400 Q436,398 442,400" fill="none" stroke="#d0b090" stroke-width="2" />
+
+  <!-- Head -->
+  <!-- Face base - monkey-like features -->
+  <ellipse cx="300" cy="180" rx="52" ry="58" fill="url(#skinGrad)" />
+
+  <!-- Monkey face - lighter heart-shaped area -->
+  <ellipse cx="300" cy="190" rx="35" ry="40" fill="#f0dcc0" />
+
+  <!-- Head fur (golden brown) -->
+  <path d="M248,180 Q245,140 260,110 Q280,80 300,75 Q320,80 340,110 Q355,140 352,180 Q355,160 350,140 Q340,120 300,115 Q260,120 250,140 Q248,160 248,180 Z" fill="#c89840" />
+
+  <!-- Fur crown / head shape -->
+  <ellipse cx="300" cy="130" rx="50" ry="38" fill="#c89840" />
+  <!-- Fur tufts -->
+  <path d="M260,110 Q255,95 265,100" fill="#d0a850" />
+  <path d="M280,95 Q278,80 288,88" fill="#d0a850" />
+  <path d="M300,90 Q300,75 310,85" fill="#d0a850" />
+  <path d="M320,95 Q322,80 312,88" fill="#d0a850" />
+  <path d="M340,110 Q345,95 335,100" fill="#d0a850" />
+
+  <!-- Side fur -->
+  <ellipse cx="245" cy="165" rx="20" ry="30" fill="#c89840" />
+  <ellipse cx="355" cy="165" rx="20" ry="30" fill="#c89840" />
+
+  <!-- Ears (small, round, monkey-like) -->
+  <circle cx="248" cy="125" r="12" fill="#c89840" />
+  <circle cx="248" cy="125" r="8" fill="#d8b060" />
+  <circle cx="352" cy="125" r="12" fill="#c89840" />
+  <circle cx="352" cy="125" r="8" fill="#d8b060" />
+
+  <!-- Eyebrows (arched, expressive) -->
+  <path d="M267,162 Q278,152 292,158" fill="none" stroke="#6a4020" stroke-width="3" stroke-linecap="round" />
+  <path d="M333,162 Q322,152 308,158" fill="none" stroke="#6a4020" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Eyes (golden, bright, mischievous) -->
+  <ellipse cx="283" cy="177" rx="12" ry="7" fill="white" />
+  <ellipse cx="317" cy="177" rx="12" ry="7" fill="white" />
+  <!-- Golden irises -->
+  <ellipse cx="285" cy="177" rx="6" ry="5" fill="#d0a030" />
+  <ellipse cx="319" cy="177" rx="6" ry="5" fill="#d0a030" />
+  <!-- Pupils -->
+  <circle cx="286" cy="178" r="3" fill="#1a0a00" />
+  <circle cx="320" cy="178" r="3" fill="#1a0a00" />
+  <!-- Eye highlights -->
+  <circle cx="284" cy="175" r="1.5" fill="white" />
+  <circle cx="318" cy="175" r="1.5" fill="white" />
+
+  <!-- Fiery eye markings -->
+  <path d="M270,170 Q275,165 282,170" fill="none" stroke="#d06030" stroke-width="1.5" opacity="0.6" />
+  <path d="M330,170 Q325,165 318,170" fill="none" stroke="#d06030" stroke-width="1.5" opacity="0.6" />
+
+  <!-- Nose (small, monkey-like) -->
+  <ellipse cx="300" cy="195" rx="8" ry="5" fill="#d0b090" />
+
+  <!-- Mouth (smirking) -->
+  <path d="M285,210 Q293,216 300,212 Q307,216 315,210" fill="none" stroke="#8a5030" stroke-width="2" stroke-linecap="round" />
+  <!-- Slight fang hint -->
+  <path d="M292,212 L292,218" stroke="#f0e8d0" stroke-width="1.5" />
+
+  <!-- Cheek fur -->
+  <ellipse cx="260" cy="195" rx="10" ry="6" fill="#d8b060" opacity="0.5" />
+  <ellipse cx="340" cy="195" rx="10" ry="6" fill="#d8b060" opacity="0.5" />
+
+  <!-- Neck -->
+  <rect x="278" y="235" width="44" height="25" fill="url(#skinGrad)" />
+  <ellipse cx="300" cy="235" rx="28" ry="10" fill="#c89840" opacity="0.5" />
+
+  <!-- Golden headband (金箍) -->
+  <ellipse cx="300" cy="145" rx="38" ry="8" fill="none" stroke="#d0a830" stroke-width="4" />
+  <ellipse cx="300" cy="145" rx="38" ry="8" fill="none" stroke="#f0d060" stroke-width="1.5" />
+  <!-- Headband center ornament -->
+  <circle cx="300" cy="144" r="6" fill="#d0a830" />
+  <circle cx="300" cy="144" r="3" fill="#f0d060" />
+
+  <!-- Cape connection at neck -->
+  <path d="M265,260 L335,260 L340,290 L260,290 Z" fill="#c03020" />
+
+  <!-- Two long pheasant feathers (theatrical) -->
+  <g stroke-linecap="round" fill="none">
+    <path d="M340,130 Q380,60 420,30 Q450,10 460,20" stroke="#e0a040" stroke-width="2.5" />
+    <path d="M338,135 Q390,70 430,40 Q460,20 470,35" stroke="#c88020" stroke-width="2" />
+    <path d="M260,130 Q220,50 160,15 Q130,5 120,15" stroke="#e0a040" stroke-width="2.5" />
+    <path d="M262,135 Q210,65 170,30 Q140,15 130,25" stroke="#c88020" stroke-width="2" />
+  </g>
+
+  <!-- Subtle shadow at feet -->
+  <ellipse cx="300" cy="845" rx="90" ry="15" fill="#000000" opacity="0.1" />
+</svg>

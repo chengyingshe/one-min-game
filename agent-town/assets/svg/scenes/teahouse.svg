@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Candlelight glow -->
+    <radialGradient id="candleGlow1" cx="50%" cy="60%" r="40%">
+      <stop offset="0%" stop-color="#fff8dc" stop-opacity="0.5" />
+      <stop offset="30%" stop-color="#ffe4a0" stop-opacity="0.3" />
+      <stop offset="70%" stop-color="#d4a76a" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#3c1a0e" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="candleGlow2" cx="50%" cy="55%" r="35%">
+      <stop offset="0%" stop-color="#fff8dc" stop-opacity="0.4" />
+      <stop offset="50%" stop-color="#ffe4a0" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#3c1a0e" stop-opacity="0" />
+    </radialGradient>
+    <!-- Window light -->
+    <linearGradient id="windowLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8dc" stop-opacity="0.6" />
+      <stop offset="50%" stop-color="#ffe8c0" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#d4a76a" stop-opacity="0.2" />
+    </linearGradient>
+    <!-- Wall gradient -->
+    <linearGradient id="wallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a2c10" />
+      <stop offset="50%" stop-color="#3c1a0e" />
+      <stop offset="100%" stop-color="#2c1010" />
+    </linearGradient>
+    <!-- Floor gradient -->
+    <linearGradient id="floorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5c3820" />
+      <stop offset="100%" stop-color="#3c1a0e" />
+    </linearGradient>
+    <!-- Table wood -->
+    <linearGradient id="tableWood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8B6914" />
+      <stop offset="50%" stop-color="#6B5010" />
+      <stop offset="100%" stop-color="#4a3010" />
+    </linearGradient>
+    <!-- Lattice window pattern -->
+    <pattern id="lattice" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect width="40" height="40" fill="none" />
+      <rect x="2" y="2" width="36" height="36" fill="none" stroke="#8B6914" stroke-width="1" />
+      <line x1="2" y1="20" x2="38" y2="20" stroke="#8B6914" stroke-width="0.5" />
+      <line x1="20" y1="2" x2="20" y2="38" stroke="#8B6914" stroke-width="0.5" />
+    </pattern>
+    <!-- Paper texture filter -->
+    <filter id="paperTex">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" result="noise" />
+      <feColorMatrix type="saturate" values="0" in="noise" />
+      <feBlend in="SourceGraphic" in2="noise" mode="multiply" result="blended" />
+    </filter>
+  </defs>
+
+  <!-- Background wall -->
+  <rect x="0" y="0" width="1600" height="600" fill="url(#wallGrad)" />
+
+  <!-- Floor -->
+  <rect x="0" y="600" width="1600" height="300" fill="url(#floorGrad)" />
+  <!-- Floor boards -->
+  <g stroke="#3c1a0e" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="620" x2="1600" y2="620" />
+    <line x1="0" y1="650" x2="1600" y2="650" />
+    <line x1="0" y1="690" x2="1600" y2="690" />
+    <line x1="0" y1="740" x2="1600" y2="740" />
+    <line x1="0" y1="800" x2="1600" y2="800" />
+    <line x1="0" y1="870" x2="1600" y2="870" />
+  </g>
+
+  <!-- Left lattice window -->
+  <rect x="80" y="80" width="280" height="300" rx="4" fill="#1a0a05" />
+  <rect x="80" y="80" width="280" height="300" rx="4" fill="url(#lattice)" opacity="0.7" />
+  <rect x="80" y="80" width="280" height="300" rx="4" fill="url(#windowLight)" />
+  <!-- Window frame -->
+  <rect x="80" y="80" width="280" height="300" rx="4" fill="none" stroke="#8B6914" stroke-width="4" />
+  <line x1="220" y1="80" x2="220" y2="380" stroke="#8B6914" stroke-width="2" />
+  <line x1="80" y1="230" x2="360" y2="230" stroke="#8B6914" stroke-width="2" />
+
+  <!-- Right lattice window -->
+  <rect x="1240" y="80" width="280" height="300" rx="4" fill="#1a0a05" />
+  <rect x="1240" y="80" width="280" height="300" rx="4" fill="url(#lattice)" opacity="0.7" />
+  <rect x="1240" y="80" width="280" height="300" rx="4" fill="url(#windowLight)" />
+  <rect x="1240" y="80" width="280" height="300" rx="4" fill="none" stroke="#8B6914" stroke-width="4" />
+  <line x1="1380" y1="80" x2="1380" y2="380" stroke="#8B6914" stroke-width="2" />
+  <line x1="1240" y1="230" x2="1520" y2="230" stroke="#8B6914" stroke-width="2" />
+
+  <!-- Scroll paintings on back wall -->
+  <g opacity="0.5">
+    <!-- Center painting -->
+    <rect x="650" y="100" width="300" height="400" rx="2" fill="#e8d5a8" filter="url(#paperTex)" />
+    <rect x="650" y="100" width="300" height="400" rx="2" fill="none" stroke="#8B6914" stroke-width="2" />
+    <!-- Mountain scene in painting -->
+    <path d="M680,400 L720,280 L760,320 L800,200 L850,260 L900,180 L930,300 L950,400 Z" fill="#6b7b5a" opacity="0.4" />
+    <path d="M700,400 L740,310 L780,340 L820,240 L870,290 L920,220 L950,400 Z" fill="#5a6a4a" opacity="0.3" />
+    <!-- Top roller -->
+    <rect x="640" y="90" width="320" height="16" rx="4" fill="#8B6914" />
+    <!-- Bottom roller -->
+    <rect x="640" y="495" width="320" height="16" rx="4" fill="#8B6914" />
+  </g>
+
+  <!-- Wall details - wooden beam -->
+  <rect x="0" y="580" width="1600" height="20" fill="#3c1a0e" opacity="0.5" />
+
+  <!-- Candle glow overlays -->
+  <ellipse cx="800" cy="500" rx="600" ry="300" fill="url(#candleGlow1)" />
+  <ellipse cx="400" cy="550" rx="300" ry="200" fill="url(#candleGlow2)" />
+  <ellipse cx="1200" cy="550" rx="300" ry="200" fill="url(#candleGlow2)" />
+
+  <!-- Tables and chairs -->
+  <!-- Left table group -->
+  <g>
+    <!-- Table top -->
+    <rect x="250" y="620" width="200" height="14" rx="3" fill="url(#tableWood)" />
+    <!-- Table legs -->
+    <rect x="260" y="634" width="12" height="80" fill="#4a3010" />
+    <rect x="428" y="634" width="12" height="80" fill="#4a3010" />
+    <!-- Teapot on table -->
+    <ellipse cx="330" cy="610" rx="18" ry="10" fill="#6b4a1e" />
+    <path d="M320,612 Q315,595 330,600 Q345,595 340,612" fill="#6b4a1e" />
+    <circle cx="330" cy="597" r="3" fill="#8B6914" />
+    <path d="M310,612 Q300,608 295,615" fill="none" stroke="#6b4a1e" stroke-width="2" stroke-linecap="round" />
+    <!-- Cup -->
+    <ellipse cx="370" cy="614" rx="8" ry="4" fill="#a08040" />
+    <path d="M364,614 L366,625 L374,625 L376,614" fill="#a08040" />
+
+    <!-- Left chair -->
+    <rect x="270" y="700" width="60" height="8" rx="2" fill="#6B5010" />
+    <rect x="275" y="708" width="8" height="50" fill="#4a3010" />
+    <rect x="317" y="708" width="8" height="50" fill="#4a3010" />
+    <!-- Chair back -->
+    <rect x="270" y="660" width="60" height="8" rx="2" fill="#6B5010" />
+    <rect x="270" y="660" width="6" height="50" fill="#4a3010" />
+    <rect x="324" y="660" width="6" height="50" fill="#4a3010" />
+
+    <!-- Right chair -->
+    <rect x="370" y="700" width="60" height="8" rx="2" fill="#6B5010" />
+    <rect x="375" y="708" width="8" height="50" fill="#4a3010" />
+    <rect x="417" y="708" width="8" height="50" fill="#4a3010" />
+    <rect x="370" y="660" width="60" height="8" rx="2" fill="#6B5010" />
+    <rect x="370" y="660" width="6" height="50" fill="#4a3010" />
+    <rect x="424" y="660" width="6" height="50" fill="#4a3010" />
+  </g>
+
+  <!-- Center table group -->
+  <g>
+    <rect x="650" y="680" width="240" height="16" rx="3" fill="url(#tableWood)" />
+    <rect x="662" y="696" width="14" height="70" fill="#4a3010" />
+    <rect x="864" y="696" width="14" height="70" fill="#4a3010" />
+    <!-- Teapot -->
+    <ellipse cx="750" cy="668" rx="20" ry="11" fill="#6b4a1e" />
+    <path d="M740,670 Q735,650 750,656 Q765,650 760,670" fill="#6b4a1e" />
+    <circle cx="750" cy="652" r="3.5" fill="#8B6914" />
+    <path d="M730,670 Q718,665 712,674" fill="none" stroke="#6b4a1e" stroke-width="2.5" stroke-linecap="round" />
+    <!-- Cups -->
+    <ellipse cx="710" cy="675" rx="9" ry="4.5" fill="#a08040" />
+    <path d="M703,675 L705,687 L715,687 L717,675" fill="#a08040" />
+    <ellipse cx="790" cy="675" rx="9" ry="4.5" fill="#a08040" />
+    <path d="M783,675 L785,687 L795,687 L797,675" fill="#a08040" />
+  </g>
+
+  <!-- Right table group (smaller, side) -->
+  <g>
+    <rect x="1100" y="650" width="160" height="12" rx="3" fill="url(#tableWood)" />
+    <rect x="1110" y="662" width="10" height="60" fill="#4a3010" />
+    <rect x="1240" y="662" width="10" height="60" fill="#4a3010" />
+    <!-- Scroll on table -->
+    <rect x="1140" y="640" width="60" height="10" rx="2" fill="#d4c4a0" />
+    <circle cx="1142" cy="645" r="5" fill="#8B6914" />
+    <circle cx="1198" cy="645" r="5" fill="#8B6914" />
+  </g>
+
+  <!-- Ceiling beam structure -->
+  <g opacity="0.3">
+    <rect x="0" y="0" width="1600" height="20" fill="#2c1010" />
+    <rect x="100" y="0" width="30" height="90" fill="#3c1a0e" />
+    <rect x="500" y="0" width="30" height="90" fill="#3c1a0e" />
+    <rect x="900" y="0" width="30" height="90" fill="#3c1a0e" />
+    <rect x="1300" y="0" width="30" height="90" fill="#3c1a0e" />
+  </g>
+
+  <!-- Dust motes in light -->
+  <g opacity="0.2" fill="#ffe8c0">
+    <circle cx="200" cy="300" r="1.5" />
+    <circle cx="350" cy="250" r="1" />
+    <circle cx="500" cy="350" r="2" />
+    <circle cx="600" cy="200" r="1.5" />
+    <circle cx="750" cy="280" r="1" />
+    <circle cx="900" cy="220" r="1.5" />
+    <circle cx="1050" cy="310" r="2" />
+    <circle cx="1200" cy="260" r="1" />
+    <circle cx="1400" cy="340" r="1.5" />
+  </g>
+
+  <!-- Warm vignette overlay -->
+  <rect x="0" y="0" width="1600" height="900" fill="none" stroke="#1a0500" stroke-width="120" opacity="0.4" rx="0">
+  </rect>
+</svg>

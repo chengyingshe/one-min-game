@@ -1,0 +1,6 @@
+name: fish-beauty-mystery
+genre: mystery
+screen:
+  width: 800
+  height: 600
+  fps: 15

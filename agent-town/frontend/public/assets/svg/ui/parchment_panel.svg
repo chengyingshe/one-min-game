@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="paperTexture" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise" />
+      <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise" />
+      <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="textured" />
+      <feComponentTransfer in="textured">
+        <feFuncA type="linear" slope="1" />
+      </feComponentTransfer>
+    </filter>
+    <filter id="edgeDarken">
+      <feGaussianBlur stdDeviation="20" result="blur" />
+      <feComponentTransfer in="blur" result="darkEdge">
+        <feFuncA type="linear" slope="0.15" />
+      </feComponentTransfer>
+      <feComposite in="darkEdge" in2="SourceGraphic" operator="over" />
+    </filter>
+    <linearGradient id="paperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5e6c8" />
+      <stop offset="40%" stop-color="#ede0c0" />
+      <stop offset="70%" stop-color="#f0dbb5" />
+      <stop offset="100%" stop-color="#e8d5a8" />
+    </linearGradient>
+    <pattern id="cloudPattern" x="0" y="0" width="80" height="40" patternUnits="userSpaceOnUse">
+      <path d="M10,20 Q20,10 30,20 Q40,30 50,20 Q60,10 70,20" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.3" />
+      <path d="M15,22 Q25,14 35,22 Q45,30 55,22 Q65,14 75,22" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.15" />
+    </pattern>
+  </defs>
+
+  <!-- Base paper -->
+  <rect x="0" y="0" width="400" height="400" rx="6" fill="url(#paperGrad)" filter="url(#paperTexture)" />
+
+  <!-- Tea-stained edges -->
+  <rect x="0" y="0" width="400" height="400" rx="6" fill="none" stroke="#c4a46c" stroke-width="1.5" opacity="0.6" />
+  <rect x="3" y="3" width="394" height="394" rx="4" fill="none" stroke="#d4b87c" stroke-width="0.5" opacity="0.4" />
+
+  <!-- Corner decorations - top left -->
+  <g transform="translate(10,10)" opacity="0.35">
+    <path d="M0,30 Q0,0 30,0" fill="none" stroke="#c9a84c" stroke-width="1.5" />
+    <path d="M0,35 Q2,2 35,0" fill="none" stroke="#c9a84c" stroke-width="0.7" />
+    <circle cx="6" cy="6" r="2" fill="#c9a84c" opacity="0.5" />
+  </g>
+
+  <!-- Corner decorations - top right -->
+  <g transform="translate(390,10)" opacity="0.35">
+    <path d="M0,30 Q0,0 -30,0" fill="none" stroke="#c9a84c" stroke-width="1.5" />
+    <path d="M0,35 Q-2,2 -35,0" fill="none" stroke="#c9a84c" stroke-width="0.7" />
+    <circle cx="-6" cy="6" r="2" fill="#c9a84c" opacity="0.5" />
+  </g>
+
+  <!-- Corner decorations - bottom left -->
+  <g transform="translate(10,390)" opacity="0.35">
+    <path d="M0,-30 Q0,0 30,0" fill="none" stroke="#c9a84c" stroke-width="1.5" />
+    <path d="M0,-35 Q2,-2 35,0" fill="none" stroke="#c9a84c" stroke-width="0.7" />
+  </g>
+
+  <!-- Corner decorations - bottom right -->
+  <g transform="translate(390,390)" opacity="0.35">
+    <path d="M0,-30 Q0,0 -30,0" fill="none" stroke="#c9a84c" stroke-width="1.5" />
+    <path d="M0,-35 Q-2,-2 -35,0" fill="none" stroke="#c9a84c" stroke-width="0.7" />
+  </g>
+
+  <!-- Subtle cloud motif overlay -->
+  <rect x="0" y="0" width="400" height="400" rx="6" fill="url(#cloudPattern)" />
+</svg>

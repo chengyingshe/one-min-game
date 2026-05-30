@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 import sys
 from pathlib import Path
 
@@ -12,6 +13,8 @@ from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from app.config import settings
 from app.database import SessionLocal
 from app.services import game_service
+
+log = logging.getLogger("ws_play")
 
 router = APIRouter(tags=["ws"])
 
@@ -72,6 +75,7 @@ async def ws_play(websocket: WebSocket, game_name: str):
         stdin=asyncio.subprocess.PIPE,
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE,
+        limit=2**20,  # 1MB buffer for large base64 JPEG frames
         env={
             **__import__("os").environ,
             "SDL_VIDEODRIVER": "dummy",
@@ -93,8 +97,8 @@ async def ws_play(websocket: WebSocket, game_name: str):
                 if not text.startswith("{"):
                     continue
                 await websocket.send_text(text)
-        except Exception:
-            pass
+        except Exception as e:
+            log.error("stdout read error for %s: %s", game_name, e)
 
     async def read_stderr():
         """Log subprocess stderr for debugging."""
@@ -103,8 +107,7 @@ async def ws_play(websocket: WebSocket, game_name: str):
                 line = await proc.stderr.readline()
                 if not line:
                     break
-                import sys as _sys
-                _sys.stderr.write(f"[game] {line.decode('utf-8', errors='replace')}")
+                log.warning("[game stderr] %s", line.decode("utf-8", errors="replace").rstrip())
         except Exception:
             pass
 
