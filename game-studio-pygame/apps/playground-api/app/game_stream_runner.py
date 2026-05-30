@@ -152,13 +152,9 @@ def main():
 
             msg_type = msg.get("type")
 
-            # Multiplayer: start_game message — create per-player key state entries
+            # Multiplayer: start_game message
             if msg_type == "start_game" and not multiplayer_mode[0]:
                 multiplayer_mode[0] = True
-                for p in msg.get("players", []):
-                    pid = p.get("id", "")
-                    if pid and pid not in player_key_states:
-                        player_key_states[pid] = defaultdict(int)
                 continue
 
             # Multiplayer: player_left
@@ -247,13 +243,8 @@ def main():
             return
 
         try:
-            # Use get_surface() instead of closure-captured screen,
-            # because the game may call pygame.display.set_mode() again.
-            current_screen = pygame.display.get_surface()
-            if current_screen is None:
-                return
-            data = pygame.image.tostring(current_screen, "RGB")
-            img = Image.frombytes("RGB", (current_screen.get_width(), current_screen.get_height()), data)
+            data = pygame.image.tostring(screen, "RGB")
+            img = Image.frombytes("RGB", (screen.get_width(), screen.get_height()), data)
             buf = io.BytesIO()
             img.save(buf, format="JPEG", quality=75)
             b64 = base64.b64encode(buf.getvalue()).decode("ascii")
@@ -287,17 +278,10 @@ def main():
         spec, module = load_game_module(game_dir)
         module.__name__ = "__main__"
 
-        # Always inject multiplayer state (mutable references — updated by stdin reader thread)
-        module.multiplayer_mode = multiplayer_mode
-        module.player_key_states = player_key_states
-
-        # Also set on __main__ module so game code using sys.modules["__main__"] finds them.
-        # Without this, model.py's _detect_multiplayer() gets None because player_key_states
-        # is a local in main(), not a module attribute of the stream runner.
-        _main_mod = sys.modules.get("__main__")
-        if _main_mod is not None:
-            _main_mod.player_key_states = player_key_states
-            _main_mod.multiplayer_mode = multiplayer_mode
+        # Inject multiplayer state into game module namespace
+        if multiplayer_mode[0]:
+            module.multiplayer_mode = True
+            module.player_key_states = player_key_states
 
         spec.loader.exec_module(module)
     except SystemExit:

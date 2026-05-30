@@ -75,24 +75,17 @@ export default function MultiplayerLobby({
     };
   }, [wsUrl, name, joined, playerId, players, onGameStart]);
 
-  const [copied, setCopied] = useState(false);
-
-  const copyRoomLink = useCallback(() => {
-    const url = `${window.location.origin}/play-multiplayer/${roomId}`;
-    navigator.clipboard.writeText(url).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  }, [roomId]);
-
   const startGame = useCallback(() => {
     if (wsRef.current?.readyState === WebSocket.OPEN) {
       wsRef.current.send(JSON.stringify({ type: "start_game" }));
     }
   }, []);
 
-  // Note: no cleanup that closes ws — the parent page owns the WebSocket lifecycle
-  // and passes it to MultiplayerPlayer when the game starts.
+  useEffect(() => {
+    return () => {
+      wsRef.current?.close();
+    };
+  }, []);
 
   if (!joined) {
     return (
@@ -125,20 +118,12 @@ export default function MultiplayerLobby({
   return (
     <div className="flex flex-col items-center justify-center min-h-[400px] bg-gray-900 rounded-lg border border-gray-700 p-8">
       <h2 className="text-2xl font-bold text-white mb-1">Lobby</h2>
-      <div className="flex items-center gap-3 mb-6">
-        <p className="text-gray-400">
-          Room code:{" "}
-          <span className="font-mono text-indigo-400 text-xl tracking-widest">
-            {roomId}
-          </span>
-        </p>
-        <button
-          onClick={copyRoomLink}
-          className="text-xs px-2 py-1 rounded bg-gray-700 text-gray-300 hover:bg-gray-600"
-        >
-          {copied ? "Copied!" : "Copy Link"}
-        </button>
-      </div>
+      <p className="text-gray-400 mb-6">
+        Room code:{" "}
+        <span className="font-mono text-indigo-400 text-xl tracking-widest">
+          {roomId}
+        </span>
+      </p>
 
       <div className="space-y-2 mb-6 w-full max-w-xs">
         {players.map((p) => (
