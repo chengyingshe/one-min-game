@@ -1,6 +1,6 @@
 import type { Game, RunResult, UploadPayload, Room } from "./types";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "/playground";
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, init);
@@ -108,11 +108,9 @@ const WS_API_BASE = process.env.NEXT_PUBLIC_WS_API_URL || "";
 
 function getWsBase(): string {
   if (WS_API_BASE) return WS_API_BASE.replace(/^http/, "ws");
-  // Fallback: derive from current host, replacing port 3080→8080
   if (typeof window !== "undefined") {
     const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const host = window.location.hostname;
-    return `${proto}//${host}:8080`;
+    return `${proto}//${window.location.host}/playground/ws`;
   }
   return "ws://localhost:8080";
 }
