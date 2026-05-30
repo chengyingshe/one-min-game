@@ -1,0 +1,39 @@
+name: pixel-runner
+genre: platformer
+screen:
+  width: 800
+  height: 600
+  fps: 60
+player:
+  symbol: "@"
+  hp: 3
+  speed: 4
+  color: [50, 150, 255]
+controls:
+  move: arrows
+  attack: none
+gameplay:
+  objective: score
+  duration: 0
+difficulty:
+  easy:
+    gravity: 0.4
+    jump_impulse: -12
+    player_speed: 4
+    enemy_speed: 1.0
+    spawn_rate: 150
+    grace_period: 120
+  normal:
+    gravity: 0.6
+    jump_impulse: -13
+    player_speed: 5
+    enemy_speed: 2.0
+    spawn_rate: 100
+    grace_period: 90
+  hard:
+    gravity: 0.9
+    jump_impulse: -14
+    player_speed: 6
+    enemy_speed: 3.5
+    spawn_rate: 70
+    grace_period: 60

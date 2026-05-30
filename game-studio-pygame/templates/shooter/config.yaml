@@ -1,0 +1,36 @@
+name: space-blaster
+genre: shooter
+screen:
+  width: 800
+  height: 600
+  fps: 60
+player:
+  symbol: "^"
+  hp: 4
+  speed: 4
+  color: [0, 200, 100]
+controls:
+  move: arrows
+  attack: space
+gameplay:
+  objective: score
+  duration: 0
+difficulty:
+  easy:
+    enemy_speed: 1.5
+    spawn_rate: 100
+    player_hp: 6
+    bullet_speed: 6
+    grace_period: 120
+  normal:
+    enemy_speed: 3.0
+    spawn_rate: 65
+    player_hp: 4
+    bullet_speed: 5
+    grace_period: 90
+  hard:
+    enemy_speed: 4.5
+    spawn_rate: 40
+    player_hp: 2
+    bullet_speed: 4
+    grace_period: 60

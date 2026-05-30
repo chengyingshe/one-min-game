@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "pygame-game-studio": {
+      "type": "stdio",
+      "command": "/Users/shechengying/workspace/competition/hackthon/one-min-game/game-studio-pygame/.venv/bin/python3",
+      "args": ["-m", "pygame_studio_mcp.server"],
+      "cwd": ".",
+      "env": {
+        "GAME_STUDIO_ROOT": ".",
+        "PLAYGROUND_API_URL": "http://localhost:8080"
+      }
+    }
+  }
+}

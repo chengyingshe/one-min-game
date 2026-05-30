@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pygame-studio-mcp"
+version = "0.1.0"
+description = "PyGame Game Studio MCP Server"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=1.0.0",
+    "pyyaml>=6.0",
+    "httpx>=0.27.0",
+]
+
+[project.scripts]
+pygame-studio-mcp = "pygame_studio_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

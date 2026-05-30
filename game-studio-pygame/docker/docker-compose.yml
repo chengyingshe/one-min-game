@@ -1,0 +1,45 @@
+name: game-studios-pygame
+
+services:
+  web:
+    build:
+      context: ../apps/playground-web
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8080
+    ports:
+      - "3080:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8080
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: ../apps/playground-api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8000"
+    environment:
+      - DATABASE_URL=sqlite:////data/games.db
+      - GAMES_DIR=/data/games
+      - SCREENSHOTS_DIR=/data/screenshots
+      - RUNNER_IMAGE=pygame-runner:latest
+    volumes:
+      - game-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../runtime/pygame-sdk:/sdk:ro
+    depends_on:
+      runner-build:
+        condition: service_completed_successfully
+
+  runner-build:
+    build:
+      context: ../docker/game-runner
+      dockerfile: Dockerfile
+    image: pygame-runner:latest
+    entrypoint: ["echo"]
+    command: ["image built"]
+
+volumes:
+  game-data:

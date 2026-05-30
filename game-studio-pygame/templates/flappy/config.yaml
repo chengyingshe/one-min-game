@@ -1,0 +1,38 @@
+name: flappy
+genre: flappy
+screen:
+  width: 800
+  height: 600
+  fps: 60
+player:
+  symbol: ">"
+  hp: 1
+  color: [255, 255, 0]
+controls:
+  move: none
+  attack: space
+gameplay:
+  objective: score
+  duration: 0
+difficulty:
+  easy:
+    gravity: 0.3
+    flap_impulse: -8
+    pipe_speed: 2
+    pipe_gap: 220
+    spawn_interval: 90
+    grace_period: 120
+  normal:
+    gravity: 0.5
+    flap_impulse: -10
+    pipe_speed: 3
+    pipe_gap: 180
+    spawn_interval: 70
+    grace_period: 90
+  hard:
+    gravity: 0.7
+    flap_impulse: -13
+    pipe_speed: 5
+    pipe_gap: 140
+    spawn_interval: 50
+    grace_period: 60
